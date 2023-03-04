@@ -1,0 +1,47 @@
+<section class="my-5 container">
+    <div class="row">
+        <div class="col">
+
+            <h1 class="py-3">{{titulo}}</h1>
+
+            <div class="p-2 border rounded-3">
+                <form [formGroup]="productoForm" (ngSubmit)="guardar()">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input formControlName="nombre" type="email" class="form-control" id="nombre" aria-describedby="emailHelp">
+                        <div *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched" 
+                          class="text-danger">Campo requerido</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <input formControlName="categoria" type="text" class="form-control" id="categoria">
+                        <div *ngIf="productoForm.get('categoria')?.hasError('required') && productoForm.get('categoria')?.touched" 
+                          class="text-danger">Campo requerido</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ubicacion" class="form-label">Ubicacion</label>
+                        <input formControlName="ubicacion" type="text" class="form-control" id="ubicacion">
+                        <div *ngIf="productoForm.get('ubicacion')?.hasError('required') && productoForm.get('ubicacion')?.touched" 
+                          class="text-danger">Campo requerido</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input formControlName="precio" type="number" class="form-control" id="number">
+                        <div *ngIf="productoForm.get('precio')?.hasError('required') && productoForm.get('precio')?.touched" 
+                          class="text-danger">Campo requerido</div>
+                    </div>
+                   
+                    <div class="d-flex">
+                        <a class="btn btn-danger mb-3 me-3" [routerLink]="['/']">Regresar</a>
+                        <button type="submit" [disabled]="productoForm.invalid" class="btn btn-success mb-3 ms-auto">Guardar</button>
+                    </div>
+
+                    
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>
