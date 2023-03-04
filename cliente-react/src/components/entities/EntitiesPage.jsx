@@ -5,18 +5,15 @@ import axios from 'axios'
 
 // boostrap 
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 
 
-import Hero from '../../pages/Hero';
 
 import {
     Link,
 } from "react-router-dom";
 
-const Entities = () => {
+const EntitiesPage = () => {
 
     const [Entities, setEntities] = useState({
         data: [],
@@ -38,22 +35,10 @@ const Entities = () => {
 
 
 
-
-    // const deleteBook = async (id) => {
-    //     try {
-    //         await axios.delete("http://localhost:8800/Entities/" + id);
-    //         window.location.reload()
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
-
     return (
         <div>
             <Container>
-
-                <Link to='/Entities-add'>
+                <Link to='/add'>
                     <button className='btn btn-primary '>
                         Add new product
                     </button>
@@ -76,7 +61,7 @@ const Entities = () => {
                                 <td>{entity.name}</td>
                                 <td>{entity.description}</td>
                                 <td>
-                                    <Link to={`/entidades/${entity._id}`}>ver</Link>
+                                    <Link to={`/${entity._id}`}>ver</Link>
                                 </td>
                             </tr>
                         )))}
@@ -93,4 +78,4 @@ const Entities = () => {
     )
 }
 
-export default Entities
+export default EntitiesPage

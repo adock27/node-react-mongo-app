@@ -1,27 +1,36 @@
 import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom'
+
+
+import { useState, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 // boostrap 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-const EmployeAddModalForm = ({ entityId }) => {
 
 
-    const [employees, setEmployees] = useState({
-        _entityId: entityId,
-        name: "",
-        position: "",
-    })
+const EmployeePage = () => {
 
 
-    // control del modal 
+
+
+
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    const handleClose = () => {
+        setShow(false);
+        fecthEmployeesById()
+    };
+    const handleShow = () => {
+        setShow(true)
+    };
 
     // state de mi error 
     const [error, setError] = useState(false)
@@ -29,25 +38,46 @@ const EmployeAddModalForm = ({ entityId }) => {
     // control de la navegacion 
     const navigate = useNavigate()
 
+
     // para obtener el id del param url 
     const location = useLocation()
 
     // obtengo el param id 
     const uid = location.pathname.split("/")[2];
 
+    const [employees, setEmployees] = useState({
+        name: "",
+        description: "",
+    })
+
+    useEffect(() => {
+
+
+        fecthEmployeesById()
+    }, [])
+
+
+    
+    const fecthEmployeesById = async () => {
+        try {
+            const res = await axios.get(`http://localhost:4000/api/employees/${uid}`);
+            setEmployees(res.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     //  obtiene los datos del formulario 
     const handleChange = (e) => {
         setEmployees((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    // cargar la data del la api 
     const handleClick = async (e) => {
         e.preventDefault();
 
         try {
-            await axios.post("http://localhost:4000/api/employees", employees)
+            await axios.put(`http://localhost:4000/api/employees/${uid}`, employees);
             setShow(false);
-            window.location.reload(false);
             // navigate("/entidades");
         } catch (err) {
             console.log(err);
@@ -56,8 +86,7 @@ const EmployeAddModalForm = ({ entityId }) => {
     };
 
 
-
-    const deleteEmployee = async (id) => {
+    const deleteEmployees = async (id) => {
         try {
             await axios.delete("http://localhost:4000/api/employees/" + id);
             navigate('/')
@@ -71,18 +100,27 @@ const EmployeAddModalForm = ({ entityId }) => {
     return (
         <div>
 
-            <Button className='border-0 px-4' variant="primary" onClick={handleShow}>
-                Agregar empleado<i class="ms-2 bi bi-person-add"></i>
-            </Button>
+            <div className='p-3'>
+                <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
+                    <h1 className='h6'>Datos de empleado</h1>
+                    <Button className='border-0' variant="outline-primary" onClick={handleShow}>
+                        <i class="bi bi-pencil-square"></i>
+                    </Button>
+                </div>
+                <h5>{employees.name}</h5>
+                <p className='small'>{employees.position}</p>
+
+            </div>
+
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Agregar empleado</Modal.Title>
+                    <Modal.Title>Editar Entidad</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
 
-                    <form >
+                    <form onSubmit={handleClick}>
                         <div className="form-group">
                             <input
                                 className='form-control border-0 bg-light mb-3'
@@ -92,28 +130,29 @@ const EmployeAddModalForm = ({ entityId }) => {
                                 onChange={handleChange}
                                 value={employees.name}
                             />
-                            <input
-                                className='form-control border-0 bg-light mb-3'
+
+
+                            <textarea
+                                className='form-control mb-3'
+                                rows={5}
                                 type="text"
-                                placeholder="entity title"
+                                placeholder="Book desc"
                                 name="position"
                                 onChange={handleChange}
                                 value={employees.position}
                             />
-
-
                         </div>
 
                     </form>
-
-
 
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                   
+                    <Button variant="danger" onClick={() => deleteEmployees(employees._id)}>
+                        Eliminar
+                    </Button>
                     <Button variant="primary" onClick={handleClick}>
                         Guardar cambios
                     </Button>
@@ -124,4 +163,4 @@ const EmployeAddModalForm = ({ entityId }) => {
     )
 }
 
-export default EmployeAddModalForm
+export default EmployeePage

@@ -12,14 +12,10 @@ import {
 } from "react-router-dom";
 
 
-import Products from './components/products/Products';
-import Books from './pages/Books';
-import { Add } from './pages/Add';
-import { Update } from './pages/Update';
-import { ProductsApp } from './components/products/ProductsAdd';
-import { ProductsUpdate } from './components/products/ProductsUpdate';
-import Entities from './components/entities/Entities';
-import { Entity } from './components/entities/Entity';
+import EntityPage from './components/entities/EntityPage';
+import EntitiesPage from './components/entities/EntitiesPage';
+import EntityAdd from './components/entities/EntityAdd';
+import EmployeePage from './components/employees/EmployeePage';
 
 
 function App() {
@@ -27,14 +23,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Entities />} />
-          <Route path='/entidades' element={<Entities />} />
-          <Route path='/entidades/:id' element={<Entity />} />
-          <Route path='/products-add' element={<ProductsApp />} />
-          <Route path='/products-update/:id' element={<ProductsUpdate />} />
-          <Route path='/add' element={<Add />} />
-          <Route path='/update/:id' element={<Update />} />
-
+          <Route path='/' element={<EntitiesPage />} />
+          <Route path='/:id' element={<EntityPage />} />
+          <Route path='/:id/:id' element={<EmployeePage />} />
+          <Route path='/add' element={<EntityAdd />} />
         </Routes>
       </BrowserRouter>
     </div>

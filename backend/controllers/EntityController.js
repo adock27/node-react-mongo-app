@@ -25,7 +25,7 @@ exports.getEntity = async (req, res) => {
         let entity = await Entity.findById(req.params.id);
 
         if(!entity) {
-            res.status(404).json({ msg: 'No existe la entidad' })
+            return res.status(404).json({ msg: 'No existe la entidad' })
         }
        
         res.json(entity);

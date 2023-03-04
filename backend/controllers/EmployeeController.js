@@ -23,18 +23,20 @@ exports.getEmployee = async (req, res) => {
 
     try {
         let employee = await Employee.findById(req.params.id);
-
         if (!employee) {
-            res.status(404).json({ msg: 'No existe la entidad' })
+            return res.status(404).json({ msg: 'No existe la entidad' })
         }
-
-        res.json(employee);
+        return res.json(employee);
 
     } catch (error) {
-        console.log(error);
-        res.status(500).send('Hubo un error');
+        console.log(error.message);
+        res.status(500).send({ msg: 'Hubo un error' });
     }
 }
+
+
+
+
 
 
 exports.getAllEmployees = async (req, res) => {
@@ -42,6 +44,19 @@ exports.getAllEmployees = async (req, res) => {
     try {
 
         const employee = await Employee.find();
+        res.json(employee)
+
+    } catch (error) {
+        res.status(500).send('Hubo un error');
+    }
+
+}
+
+exports.getEmployeesByEntityId = async (req, res) => {
+
+    try {
+
+        const employee = await Employee.find({ "_entityId": req.params.id });
         res.json(employee)
 
     } catch (error) {
@@ -79,10 +94,10 @@ exports.deleteEmployee = async (req, res) => {
         let employee = await Employee.findById(req.params.id);
 
         if (!employee) {
-            res.status(404).json({ msg: 'No existe el Employee' })
+            return res.status(404).json({ msg: 'No existe el Employee' })
         }
 
-        await employee.findOneAndRemove({ _id: req.params.id })
+        await Employee.findOneAndRemove({ _id: req.params.id })
         res.json({ msg: 'Entidad eliminada con exito' });
 
     } catch (error) {

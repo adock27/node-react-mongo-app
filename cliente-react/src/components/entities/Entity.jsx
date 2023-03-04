@@ -8,10 +8,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
-
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+
 import EmployeAddModalForm from '../employees/EmployeAddModalForm';
+import EmployeesTable from '../employees/EmployeesTable';
 
 
 
@@ -74,8 +75,6 @@ export const Entity = () => {
         }
     }
 
-
-
     useEffect(() => {
 
         const fecthEntityById = async () => {
@@ -95,7 +94,6 @@ export const Entity = () => {
         <div className='container py-5 my-5'>
 
             <Row>
-
                 <Col md={3}>
                     <div className='p-3'>
                         <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
@@ -162,35 +160,14 @@ export const Entity = () => {
                         <h2 className='h6'>Empleados</h2>
 
                         {uid ? (
-                            <EmployeAddModalForm entityId={uid}></EmployeAddModalForm>
+                            <EmployeAddModalForm entityId={uid} ></EmployeAddModalForm>
                         ) : (
                             <p>Loading...</p>
                         )}
 
-
-
                     </div>
-                    <Table striped borderless hover>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Cargo</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Anderson Orozco Dumet</td>
-                                <td>Desarrollador</td>
-                                <td>
-                                    <Link to={`/entidades/${entity._id}/`}>ver</Link>
-                                </td>
-                            </tr>
 
-                        </tbody>
-                    </Table>
+                    <EmployeesTable entityId={uid}></EmployeesTable>
                 </Col>
 
 
