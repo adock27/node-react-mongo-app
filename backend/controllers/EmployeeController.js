@@ -9,7 +9,7 @@ exports.createEmployee = async (req, res) => {
         // Creamos nuestro Employee
         employee = new Employee(req.body);
 
-        await Employee.save();
+        await employee.save();
         res.send(employee);
 
     } catch (error) {
@@ -53,15 +53,16 @@ exports.getAllEmployees = async (req, res) => {
 exports.updateEmployee = async (req, res) => {
 
     try {
-        const { _entityId, name, description } = req.body;
+        const { _entityId, name, position } = req.body;
         let employee = await Employee.findById(req.params.id);
 
         if (!employee) {
             res.status(404).json({ msg: 'No existe el Employee' })
         }
 
+        employee._entityId = _entityId;
         employee.name = name;
-        employee.description = description;
+        employee.position = position;
 
         employee = await Employee.findOneAndUpdate({ _id: req.params.id }, employee, { new: true })
         res.json(employee);

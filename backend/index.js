@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use('/api/productos', require('./routes/producto'));
 app.use('/api/entities', require('./routes/Entity'));
+app.use('/api/employees', require('./routes/Employee'));
 
 app.listen(4000, () => {
     console.log(`Servidor puerto: 4000`)

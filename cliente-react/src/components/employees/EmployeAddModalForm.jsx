@@ -78,6 +78,7 @@ const EmployeAddModalForm = ({entityId}) => {
                 Agregar empleado<i class="ms-2 bi bi-person-add"></i>
             </Button>
 
+                {employees._entityId}
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Editar Entidad</Modal.Title>
