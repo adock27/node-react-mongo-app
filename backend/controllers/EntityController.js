@@ -72,8 +72,6 @@ exports.updateEntity = async (req, res) => {
     }
 }
 
-
-
 exports.deleteEntity = async (req, res) => {
 
     try {

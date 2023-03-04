@@ -18,6 +18,8 @@ import { Add } from './pages/Add';
 import { Update } from './pages/Update';
 import { ProductsApp } from './components/products/ProductsAdd';
 import { ProductsUpdate } from './components/products/ProductsUpdate';
+import Entities from './components/entities/Entities';
+import { Entity } from './components/entities/Entity';
 
 
 function App() {
@@ -25,7 +27,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Products />} />
+          <Route path='/' element={<Entities />} />
+          <Route path='/entidades' element={<Entities />} />
+          <Route path='/entidades/:id' element={<Entity />} />
           <Route path='/products-add' element={<ProductsApp />} />
           <Route path='/products-update/:id' element={<ProductsUpdate />} />
           <Route path='/add' element={<Add />} />

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 
-const EmployeesSchema = mongoose.Schema({
+const EmployeeSchema = mongoose.Schema({
     _entityId: {
         type: String,
         required: true
@@ -20,4 +20,4 @@ const EmployeesSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('EmployeesModel', EmployeesSchema);
+module.exports = mongoose.model('EmployeeModel', EmployeeSchema);
