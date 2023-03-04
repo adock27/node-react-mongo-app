@@ -11,7 +11,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api/productos', require('./routes/producto'));
+app.use('/api/entities', require('./routes/Entity'));
 
 app.listen(4000, () => {
-    console.log('El servidor esta corriendo perfectamente')
+    console.log(`Servidor puerto: 4000`)
 })
