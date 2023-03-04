@@ -1,4 +1,5 @@
 backend/node_modules
 cliente/node_modules
+cliente-react/node_modules
 cliente/.angular
 cliente/.vscode
