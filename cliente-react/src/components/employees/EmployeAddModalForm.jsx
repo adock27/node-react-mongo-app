@@ -79,7 +79,7 @@ const EmployeAddModalForm = ({ entityId }) => {
                             rows={5}
                             type="text"
                             placeholder="..."
-                            name="description"
+                            name="position"
                             onChange={handleChange}
                             value={employees.position}
                         />

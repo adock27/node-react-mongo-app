@@ -1,18 +1,17 @@
 import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 // boostrap 
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 import EmployeAddModalForm from '../employees/EmployeAddModalForm';
 import EmployeesTable from '../employees/EmployeesTable';
+import { tokenValidator } from '../../services/TokenValidator'
 
 
 
@@ -56,6 +55,7 @@ export const Entity = () => {
         e.preventDefault();
 
         try {
+            
             await axios.put(`http://localhost:4000/api/entities/${uid}`, entity);
             setShow(false);
             // navigate("/entidades");
@@ -68,7 +68,7 @@ export const Entity = () => {
 
     const deleteEntity = async (id) => {
         try {
-            await axios.delete("http://localhost:4000/api/entities/" + id);
+            await axios.delete(`http://localhost:4000/api/entities/${id}`);
             navigate('/')
         } catch (error) {
             console.log(error);

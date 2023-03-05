@@ -13,6 +13,7 @@ import {
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { tokenValidator } from '../../services/TokenValidator';
 
 
 export const EntityAdd = () => {
@@ -34,7 +35,8 @@ export const EntityAdd = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:4000/api/entities", entities)
+      const config = tokenValidator()
+      await axios.post("http://localhost:4000/api/entities", entities, config)
       navigate('/')
     } catch (error) {
       console.log(error);

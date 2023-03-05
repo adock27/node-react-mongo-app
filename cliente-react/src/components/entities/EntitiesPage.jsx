@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 
-import { tokenValidator } from '../../services/TokenValidator'
 
 // boostrap 
 import Container from 'react-bootstrap/Container';
@@ -27,7 +26,7 @@ const EntitiesPage = () => {
 
         const fetchAllEntities = async () => {
             try {
-                const res = await axios.get("http://localhost:4000/api/entities",tokenValidator());
+                const res = await axios.get("http://localhost:4000/api/entities");
                 setEntities(res.data);
             } catch (err) {
                 console.log(err);
@@ -63,9 +62,6 @@ const EntitiesPage = () => {
                         )))}
                     </tbody>
                 </Table>
-
-
-
             </Container>
 
 

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 
-const Newlogin = () => {
+const Login = () => {
+
 
     const [login, setLogin] = useState({
         email: "",
@@ -23,7 +24,6 @@ const Newlogin = () => {
         try {
             const res = await axios.post("http://localhost:4000/api/login", login)
             const {jwt} = res.data;
-            console.log(jwt);
             window.localStorage.setItem(
                 'jwt', JSON.stringify(jwt)
             )
@@ -32,24 +32,12 @@ const Newlogin = () => {
             console.log(error.response);
         }
     };
-
-
-    useEffect(() => {
-      
-        const jwt = window.localStorage.getItem('jwt');
-
-        if (jwt) {
-            console.log('hay una sesion'+ JSON.parse(jwt));
-        }
-      
-    }, [])
     
 
 
 
-
     return (
-        <section className="hero ">
+        <section className="container ">
 
             {error && <p>{error}</p>}
 
@@ -90,4 +78,4 @@ const Newlogin = () => {
     )
 }
 
-export default Newlogin
+export default Login

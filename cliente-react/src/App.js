@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import axios from 'axios'
+import axios from 'axios';
 
 import {
   Route,
@@ -15,11 +16,10 @@ import EntityPage from './components/entities/EntityPage';
 import EntitiesPage from './components/entities/EntitiesPage';
 import EntityAdd from './components/entities/EntityAdd';
 import EmployeePage from './components/employees/EmployeePage';
-import Register from './components/login/Register';
-import Dashboard from './components/login/Dashboard';
-import Newlogin from './components/login/Newlogin';
+import Login from './components/login/Login';
+import { tokenValidator } from './services/TokenValidator';
 
-// axios.defaults.withCredentials = true;
+axios.defaults.headers.common = tokenValidator();
 
 function App() {
   return (
@@ -47,9 +47,7 @@ function App() {
             <Route path='/:id' element={<EntityPage />} />
             <Route path='/:id/:id' element={<EmployeePage />} />
             <Route path='/add' element={<EntityAdd />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Newlogin />} />
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/login' element={<Login />} />
           </Routes>
         </BrowserRouter>
       </div>

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 // boostrap 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -98,7 +98,7 @@ const EmployeePage = () => {
                 </div>
                 <h5>{employees.name}</h5>
                 <p className='small'>{employees.position}</p>
-
+                <Link to={'../'}>ver</Link>
             </div>
 
 
