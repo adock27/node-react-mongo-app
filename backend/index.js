@@ -20,10 +20,11 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// routes 
 app.use('/api/productos', require('./routes/producto'));
 app.use('/api/entities', require('./routes/Entity'));
 app.use('/api/employees', require('./routes/Employee'));
-app.use('/api/login', require('./routes/Login'));
 
 
 app.post('/secure', function (req, res) {

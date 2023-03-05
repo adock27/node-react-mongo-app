@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-
+import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -16,7 +16,10 @@ import EntityPage from './components/entities/EntityPage';
 import EntitiesPage from './components/entities/EntitiesPage';
 import EntityAdd from './components/entities/EntityAdd';
 import EmployeePage from './components/employees/EmployeePage';
+import Register from './components/login/Register';
+import Login from './components/login/Login';
 
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
@@ -44,6 +47,8 @@ function App() {
             <Route path='/:id' element={<EntityPage />} />
             <Route path='/:id/:id' element={<EmployeePage />} />
             <Route path='/add' element={<EntityAdd />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
           </Routes>
         </BrowserRouter>
       </div>
