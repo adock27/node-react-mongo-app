@@ -14,10 +14,6 @@ import Modal from 'react-bootstrap/Modal';
 
 const EmployeePage = () => {
 
-
-
-
-
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
@@ -91,7 +87,7 @@ const EmployeePage = () => {
 
 
     return (
-        <div>
+        <div className='container'>
 
             <div className='p-3'>
                 <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
