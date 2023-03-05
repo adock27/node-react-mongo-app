@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
 
-const Login = () => {
-    
+const Newlogin = () => {
 
-    const [msg, setMsg] = useState('');
+
+
 
 
     const [login, setLogin] = useState({
@@ -13,7 +12,7 @@ const Login = () => {
         password: "",
     })
 
-   
+
 
     //  obtiene los datos del formulario 
     const getFormValues = (e) => {
@@ -27,14 +26,17 @@ const Login = () => {
 
         console.log(login);
         try {
-            await axios.post('http://localhost:4000/api/login', login);
+            await axios.post("http://localhost:4000/api/login", login)
             // history.push("/dashboard");
         } catch (error) {
-            if (error.response) {
-                setMsg(error.response.data.msg);
-            }
+            console.log(error.response);
         }
     };
+
+
+
+
+
 
     return (
         <section className="hero ">
@@ -70,8 +72,9 @@ const Login = () => {
 
 
             </form>
+            
         </section>
     )
 }
 
-export default Login
+export default Newlogin

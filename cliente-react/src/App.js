@@ -16,8 +16,8 @@ import EntitiesPage from './components/entities/EntitiesPage';
 import EntityAdd from './components/entities/EntityAdd';
 import EmployeePage from './components/employees/EmployeePage';
 import Register from './components/login/Register';
-import Login from './components/login/Login';
 import Dashboard from './components/login/Dashboard';
+import Newlogin from './components/login/Newlogin';
 
 // axios.defaults.withCredentials = true;
 
@@ -48,7 +48,7 @@ function App() {
             <Route path='/:id/:id' element={<EmployeePage />} />
             <Route path='/add' element={<EntityAdd />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element={<Newlogin />} />
             <Route path='/dashboard' element={<Dashboard />} />
           </Routes>
         </BrowserRouter>

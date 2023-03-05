@@ -60,20 +60,21 @@ router.post('/login', async (req, res) => {
    
     // validaciones
     const { error } = schemaLogin.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message })
+    if (error) return res.status(401).json({ msg: 'No existe la entidad' });
     
     
-    console.log(req.body.email);
     
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
+    // console.log(user);
+    if (!user) return res.json({ error: 'Usuario no encontrado' });
     
     
-    console.log({userdb : user});
+    console.log({db_password : user.password});
+    console.log({body_password : req.body.password});
     
-    if (req.body.password === user.password) return res.status(400).json({ error: error+'anderson test' })
+    if (req.body.password !== user.password) return res.json({ error: 'Wrong Password' })
     
-    const token = sign("anderson@gmail.com")
+    const token = sign(req.body.email)
     console.log(token);
     res.json({ jwt: token });
 })
