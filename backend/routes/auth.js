@@ -57,14 +57,17 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 
-    // console.log(req.body);
+   
     // validaciones
     const { error } = schemaLogin.validate(req.body);
     if (error) return res.status(400).json({ error: error.details[0].message })
     
+    
+    console.log(req.body.email);
+    
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
-
+    
     
     console.log({userdb : user});
     
