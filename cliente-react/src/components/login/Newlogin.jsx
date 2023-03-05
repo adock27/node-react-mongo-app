@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
 const Newlogin = () => {
@@ -22,7 +22,11 @@ const Newlogin = () => {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:4000/api/login", login)
-            
+            const {jwt} = res.data;
+            console.log(jwt);
+            window.localStorage.setItem(
+                'jwt', JSON.stringify(jwt)
+            )
             setError(res.data.error);
         } catch (error) {
             console.log(error.response);
@@ -30,6 +34,16 @@ const Newlogin = () => {
     };
 
 
+    useEffect(() => {
+      
+        const jwt = window.localStorage.getItem('jwt');
+
+        if (jwt) {
+            console.log('hay una sesion'+ JSON.parse(jwt));
+        }
+      
+    }, [])
+    
 
 
 

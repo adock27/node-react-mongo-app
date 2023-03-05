@@ -3,15 +3,12 @@ const conectarDB = require('./config/db');
 const cors = require("cors");
 require('dotenv').config({ path: 'variables.env' });
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-// import routes
-const authRoutes = require('./routes/auth');
+
 
 
 
 // Creamos el servidor
 const app = express();
-const { authApply, sign } = require("./shared/jwt");
 
 // Conectamos a la BD
 conectarDB();
@@ -26,8 +23,6 @@ app.use('/api/productos', require('./routes/producto'));
 app.use('/api/entities', require('./routes/Entity'));
 app.use('/api/employees', require('./routes/Employee'));
 app.use('/api', require('./routes/auth'));
-
-
 
 
 app.listen(4000, () => {
