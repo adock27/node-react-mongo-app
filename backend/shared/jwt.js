@@ -8,7 +8,7 @@ exports.sign = (email) => {
 exports.authApply = () => {
     return (req, res, next) => {
         // Example token = Bearer oafasof89f8a0s-fafjalfjalfa
-        const token = req.headers?.authorization.split(" ")[1];
+        const token = req.headers?.authorization.split(' ')[1];
         let error =  false;
         if (!token) {
             error =  true;
