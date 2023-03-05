@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-
+import { getToken } from "../../services/TokenValidator"
 
 
 const EmployeePage = () => {
@@ -46,7 +46,7 @@ const EmployeePage = () => {
     }, [])
 
 
-    
+
     const fecthEmployeesById = async () => {
         try {
             const res = await axios.get(`http://localhost:4000/api/employees/${uid}`);
@@ -70,7 +70,7 @@ const EmployeePage = () => {
             // navigate("/entidades");
         } catch (err) {
             console.log(err);
-         
+
         }
     };
 
@@ -92,9 +92,13 @@ const EmployeePage = () => {
             <div className='p-3'>
                 <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
                     <h1 className='h6'>Datos de empleado</h1>
-                    <Button className='border-0' variant="outline-primary" onClick={handleShow}>
-                        <i className="bi bi-pencil-square"></i>
-                    </Button>
+                    {getToken() &&
+
+                        <Button className='border-0' variant="outline-primary" onClick={handleShow}>
+                            <i className="bi bi-pencil-square"></i>
+                        </Button>
+
+                    }
                 </div>
                 <h5>{employees.name}</h5>
                 <p className='small'>{employees.position}</p>

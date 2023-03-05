@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import EmployeesTable from '../employees/EmployeesTable'
 import EmployeAddModalForm from '../employees/EmployeAddModalForm'
 import EntityInfo from './EntityInfo'
+import { getToken } from '../../services/TokenValidator'
 
 
 const EntityPage = () => {
@@ -20,18 +21,16 @@ const EntityPage = () => {
         <div className='container'>
 
             <div className="row">
-                <div className="col-md-3">
+                <div className="col-lg-5">
                     <EntityInfo></EntityInfo>
                 </div>
                 <div className="col p-3">
                     <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
                         <h2 className='h6'>Empleados</h2>
 
-                        {uid ? (
+                        {getToken() &&
                             <EmployeAddModalForm entityId={uid} ></EmployeAddModalForm>
-                        ) : (
-                            <p>Loading...</p>
-                        )}
+                        }
 
                     </div>
                     <EmployeesTable entityId={uid}></EmployeesTable>

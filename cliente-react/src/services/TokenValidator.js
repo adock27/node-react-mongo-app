@@ -8,3 +8,15 @@ export const tokenValidator = () =>{
 
     return config;
 }
+
+export const getToken = () =>{
+
+    const token = JSON.parse(window.localStorage.getItem('jwt'));
+
+    if (token) {
+        return true;
+    }else{
+        return false;
+    }
+
+}

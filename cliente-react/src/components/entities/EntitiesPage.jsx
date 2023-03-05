@@ -38,7 +38,7 @@ const EntitiesPage = () => {
 
     return (
         <div>
-            <Container>
+            <Container className='bg-white p-3'>
                 <Table striped hover>
                     <thead>
                         <tr>

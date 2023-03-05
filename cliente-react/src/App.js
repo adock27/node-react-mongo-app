@@ -11,35 +11,36 @@ import {
   Routes,
 } from "react-router-dom";
 
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 import EntityPage from './components/entities/EntityPage';
 import EntitiesPage from './components/entities/EntitiesPage';
 import EntityAdd from './components/entities/EntityAdd';
 import EmployeePage from './components/employees/EmployeePage';
 import Login from './components/login/Login';
-import { tokenValidator } from './services/TokenValidator';
+import { tokenValidator, getToken } from './services/TokenValidator';
 
 axios.defaults.headers.common = tokenValidator();
 
 function App() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light px-2 mb-3">
-        <a className="navbar-brand" href="/">App</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item ">
-              <a className="nav-link" href="/">Home</a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link" href="/add">Añadir entidad</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+
+      <Navbar bg="white" variant="light" className='mb-4 shadow'>
+        <Container>
+          <Navbar.Brand href="#home">App</Navbar.Brand>
+          <Nav className="me-auto">
+          <Nav.Link href="/">Inicio</Nav.Link>
+            {getToken() &&
+              <Nav.Link href="/add">Añadir entidad</Nav.Link>
+            }
+          </Nav>
+        </Container>
+      </Navbar>
+
+    
       <div className="App">
         <BrowserRouter>
           <Routes>

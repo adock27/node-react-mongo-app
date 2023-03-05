@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import {getToken} from '../../services/TokenValidator'
 
 
 
@@ -50,7 +51,7 @@ const EntityInfo = () => {
     }, [])
 
 
-    
+
     const fecthEntityById = async () => {
         try {
             const res = await axios.get(`http://localhost:4000/api/entities/${uid}`);
@@ -74,7 +75,7 @@ const EntityInfo = () => {
             // navigate("/entidades");
         } catch (err) {
             console.log(err);
-            
+
         }
     };
 
@@ -96,9 +97,12 @@ const EntityInfo = () => {
             <div className='p-3'>
                 <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
                     <h1 className='h6'>Datos de entidad</h1>
-                    <Button className='border-0' variant="outline-primary" onClick={handleShow}>
-                        <i className="bi bi-pencil-square"></i>
-                    </Button>
+                    {getToken() &&
+
+                        <Button className='border-0' variant="outline-primary" onClick={handleShow}>
+                            <i className="bi bi-pencil-square"></i>
+                        </Button>
+                    }
                 </div>
                 <h5>{entity.name}</h5>
                 <p className='small'>{entity.description}</p>
