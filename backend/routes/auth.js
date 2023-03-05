@@ -60,7 +60,7 @@ router.post('/login', async (req, res) => {
    
     // validaciones
     const { error } = schemaLogin.validate(req.body);
-    if (error) return res.status(401).json({ msg: 'No existe la entidad' });
+    if (error) return res.json({ error: 'Error' })
     
     
     
