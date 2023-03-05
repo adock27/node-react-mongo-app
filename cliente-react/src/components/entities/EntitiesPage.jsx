@@ -40,11 +40,12 @@ const EntitiesPage = () => {
     return (
         <div>
             <Container className='bg-white p-3'>
-                <Table striped hover>
+            <h1 className="h6 mb-3">Tabla de entidades</h1>
+                <Table striped hover className='table-responsive'>
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
+                            <th className='d-none d-md-block'>Descripcion</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -55,7 +56,7 @@ const EntitiesPage = () => {
                         ) : (Entities.map((entity, key) => (
                             <tr key={key}>
                                 <td>{entity.name}</td>
-                                <td>{entity.description}</td>
+                                <td className='d-none d-md-block'>{entity.description}</td>
                                 <td>
                                     <Link to={`/${entity._id}`}>ver</Link>
                                 </td>
@@ -64,7 +65,6 @@ const EntitiesPage = () => {
                     </tbody>
                 </Table>
             </Container>
-
 
 
         </div>

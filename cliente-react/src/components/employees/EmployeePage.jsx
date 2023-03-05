@@ -33,6 +33,7 @@ const EmployeePage = () => {
 
     // obtengo el param id 
     const uid = location.pathname.split("/")[2];
+    const entityId = location.pathname.split("/")[1];
 
     const [employees, setEmployees] = useState({
         name: "",
@@ -78,7 +79,7 @@ const EmployeePage = () => {
     const deleteEmployees = async (id) => {
         try {
             await axios.delete("http://localhost:4000/api/employees/" + id);
-            navigate('/')
+            navigate('/'+entityId)
         } catch (error) {
             console.log(error);
         }
@@ -102,7 +103,9 @@ const EmployeePage = () => {
                 </div>
                 <h5>{employees.name}</h5>
                 <p className='small'>{employees.position}</p>
-                <Link to={'../'}>ver</Link>
+                <Link to={'/'+entityId}>
+                    <div className="btn btn-danger">Regresar</div>
+                </Link>
             </div>
 
 
@@ -123,17 +126,16 @@ const EmployeePage = () => {
                                 onChange={handleChange}
                                 value={employees.name}
                             />
-
-
-                            <textarea
-                                className='form-control mb-3'
-                                rows={5}
+                            <input
+                                className='form-control border-0 bg-light mb-3'
                                 type="text"
-                                placeholder="Book desc"
+                                placeholder="employees title"
                                 name="position"
                                 onChange={handleChange}
                                 value={employees.position}
                             />
+
+
                         </div>
 
                     </form>

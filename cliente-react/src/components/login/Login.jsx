@@ -33,6 +33,7 @@ const Login = () => {
                 window.localStorage.setItem(
                     'jwt', JSON.stringify(jwt)
                 )
+                window.location.reload(false);
                 navigate('/')
             }
 
