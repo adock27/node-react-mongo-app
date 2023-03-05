@@ -60,29 +60,28 @@ router.post('/login', async (req, res) => {
 
     // validaciones
     const { error } = schemaLogin.validate(req.body);
-    if (error) return res.json({ error: 'llenar todos los campos' })
+    if (error) return res.json({ error: 'Verifique su correo y contraseña' })
 
 
 
     const user = await User.findOne({ email: req.body.email });
     // console.log(user);
-    if (!user) return res.json({ error: 'Correo no registrado' });
+    if (!user) return res.json({ error: 'Verifique el email' })
 
 
     console.log({ db_password: user.password });
     console.log({ body_password: req.body.password });
 
-    if (req.body.password !== user.password) return res.json({ error: 'Contraseña no coincide' })
+    if (req.body.password !== user.password) return res.json({ error: 'Verifique su contraseña' })
 
     const token = sign(req.body.email)
-    console.log(token);
-    res.json({ jwt: token });
-    return true
+
+    res.send({ jwt: token });
 })
 
 
 router.post('/token', authApply(), function (req, res) {
-    return res.status(200).send({msg: "Hello World"});
+    return res.status(200).send({ msg: "Token Correcto" });
 });
 
 

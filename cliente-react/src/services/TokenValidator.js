@@ -1,22 +1,31 @@
 
-export const tokenValidator = () =>{
+export const tokenValidator = () => {
 
     const token = JSON.parse(window.localStorage.getItem('jwt'));
-
-    const config = { Authorization: `Bearer ${token}` }
-    
-
-    return config;
+    if (token) {
+        return { Authorization: `Bearer ${token}` }
+    }
+    return false
 }
 
-export const getToken = () =>{
+export const getToken = () => {
 
     const token = JSON.parse(window.localStorage.getItem('jwt'));
 
     if (token) {
         return true;
-    }else{
+    } else {
         return false;
     }
+
+}
+
+
+export const removeToken = () => {
+
+    window.localStorage.removeItem('jwt');
+
+    window.location.reload(false);
+
 
 }

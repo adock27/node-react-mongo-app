@@ -20,7 +20,7 @@ import EntitiesPage from './components/entities/EntitiesPage';
 import EntityAdd from './components/entities/EntityAdd';
 import EmployeePage from './components/employees/EmployeePage';
 import Login from './components/login/Login';
-import { tokenValidator, getToken } from './services/TokenValidator';
+import { tokenValidator, getToken, removeToken } from './services/TokenValidator';
 
 axios.defaults.headers.common = tokenValidator();
 
@@ -30,17 +30,21 @@ function App() {
 
       <Navbar bg="white" variant="light" className='mb-4 shadow'>
         <Container>
-          <Navbar.Brand href="#home">App</Navbar.Brand>
+          <Navbar.Brand href="/">App</Navbar.Brand>
           <Nav className="me-auto">
-          <Nav.Link href="/">Inicio</Nav.Link>
+            <Nav.Link href="/">Inicio</Nav.Link>
             {getToken() &&
-              <Nav.Link href="/add">Añadir entidad</Nav.Link>
+              <Nav.Link href="/add">Nueva entidad</Nav.Link>
             }
           </Nav>
+          {getToken() ?
+            <Nav.Link onClick={removeToken}>Cerrar sesion</Nav.Link> :
+            <Nav.Link href="/login">Iniciar sesion</Nav.Link>
+          }
         </Container>
       </Navbar>
 
-    
+
       <div className="App">
         <BrowserRouter>
           <Routes>

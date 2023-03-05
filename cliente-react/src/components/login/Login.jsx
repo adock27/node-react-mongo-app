@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import { getToken } from '../../services/TokenValidator';
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-
+    const navigate = useNavigate();
 
     const [login, setLogin] = useState({
         email: "",
@@ -23,16 +25,33 @@ const Login = () => {
         e.preventDefault();
         try {
             const res = await axios.post("http://localhost:4000/api/login", login)
-            const {jwt} = res.data;
-            window.localStorage.setItem(
-                'jwt', JSON.stringify(jwt)
-            )
+
+
+
+            if (res.data.jwt) {
+                const { jwt } = res.data;
+                window.localStorage.setItem(
+                    'jwt', JSON.stringify(jwt)
+                )
+                navigate('/')
+            }
+
+
+
             setError(res.data.error);
         } catch (error) {
             console.log(error.response);
         }
     };
-    
+
+
+
+    useEffect(() => {
+
+        if (getToken()) {
+            navigate('/')
+        }
+    }, [])
 
 
 
@@ -43,22 +62,22 @@ const Login = () => {
 
             <form onSubmit={Auth}>
                 <div className="form-group">
-                    <label htmlFor="email" className='small'>Nombre de empleado:</label>
+                    <label htmlFor="email" className='small'>Correo</label>
                     <input
                         className='form-control mb-3'
                         type="email"
-                        placeholder="..."
+                        placeholder="example@example.com"
                         name="email"
                         onChange={getFormValues}
                         value={login.email}
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password" className='small'>Nombre de empleado:</label>
+                    <label htmlFor="password" className='small'>Contraseña</label>
                     <input
                         className='form-control mb-3'
                         type="password"
-                        placeholder="..."
+                        placeholder="****"
                         name="password"
                         onChange={getFormValues}
                         value={login.password}
