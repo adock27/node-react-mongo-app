@@ -43,7 +43,7 @@ const EmployeesTable = ({entityId}) => {
                 <tbody>
 
                     {(employees.loading) ? (
-                        <p>Loading...</p>
+                        <tr><td>cargando...</td></tr>
                     ) : (employees.map((employee, key) => (
                         <tr>
                             <td>{employee.name}</td>

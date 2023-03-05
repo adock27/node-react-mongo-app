@@ -50,7 +50,7 @@ const EmployeAddModalForm = ({ entityId }) => {
         <div>
 
             <Button className='border-0 px-4' variant="primary" onClick={handleShow}>
-                Agregar empleado<i class="ms-2 bi bi-person-add"></i>
+                Agregar empleado<i className="ms-2 bi bi-person-add"></i>
             </Button>
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} centered>

@@ -97,7 +97,7 @@ const EmployeePage = () => {
                 <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
                     <h1 className='h6'>Datos de empleado</h1>
                     <Button className='border-0' variant="outline-primary" onClick={handleShow}>
-                        <i class="bi bi-pencil-square"></i>
+                        <i className="bi bi-pencil-square"></i>
                     </Button>
                 </div>
                 <h5>{employees.name}</h5>

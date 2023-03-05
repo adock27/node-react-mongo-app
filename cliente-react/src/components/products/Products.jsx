@@ -64,13 +64,13 @@ const Products = () => {
                     {(Products.loading) ? (
                         <p>Loading...</p>
                     ) : (Products.map((product) => (
-                        <ul class="list-group border-bottom mb-3">
-                            <li class="list-group-item">_id: {product._id}</li>
-                            <li class="list-group-item">nombre: {product.nombre}</li>
-                            <li class="list-group-item">categoria: {product.categoria}</li>
-                            <li class="list-group-item">ubicacion: {product.ubicacion}</li>
-                            <li class="list-group-item">fechaCreacion: {product.fechaCreacion}</li>
-                            <li class="list-group-item">
+                        <ul className="list-group border-bottom mb-3">
+                            <li className="list-group-item">_id: {product._id}</li>
+                            <li className="list-group-item">nombre: {product.nombre}</li>
+                            <li className="list-group-item">categoria: {product.categoria}</li>
+                            <li className="list-group-item">ubicacion: {product.ubicacion}</li>
+                            <li className="list-group-item">fechaCreacion: {product.fechaCreacion}</li>
+                            <li className="list-group-item">
                                 <Link
                                     to={`/products-update/${product._id}`}
                                     style={{ color: "inherit", textDecoration: "none" }}

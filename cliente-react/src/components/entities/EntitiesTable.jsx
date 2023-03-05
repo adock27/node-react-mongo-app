@@ -46,7 +46,7 @@ const EntitiesTable = ({entityId}) => {
                     <tbody>
 
                         {(Entities.loading) ? (
-                            <p>Loading...</p>
+                            <tr><td>cargando...</td></tr>
                         ) : (Entities.map((entity, key) => (
                             <tr>
                                 <td>{entity.name}</td>
