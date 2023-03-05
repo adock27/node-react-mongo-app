@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 // Creamos el servidor
 const app = express();
+const { authApply, sign } = require("./shared/jwt");
 
 // Conectamos a la BD
 conectarDB();
@@ -20,25 +21,14 @@ app.use('/api/employees', require('./routes/Employee'));
 
 
 app.post('/secure', function (req, res) {
-    const token = jwt.sign({ user: { id: 1, name: 'ME!', role: 'average' } }, 'dsfklgj');
+    const token = sign("anderson@gmail.com")
     console.log(token);
     res.json({ jwt: token });
 });
 
 
-app.post('/check/post', function (req, res) {
-    const token = req.body.jwt;
-    console.log('token: ' + token);
-    const x = jwt.verify(token, 'dsfklgj', function (err, decoded) {
-        if (err) throw err;
-        console.log(decoded);
-    });
-    console.log(x);
-    if (x != true) {
-        res.json({ auth: false });
-    } else {
-        res.json({ auth: true });
-    }
+app.post('/check/post', authApply(), function (req, res) {
+    return res.status(200).send({msg: "Hello World"});
 });
 
 app.listen(4000, () => {

@@ -7,22 +7,27 @@ exports.sign = (email) => {
 
 exports.authApply = () => {
     return (req, res, next) => {
-        // Example token = Bearer oafasof89f8a0s-fafjalfjalfa
-        const token = req.headers?.authorization.split(' ')[1];
-        let error =  false;
-        if (!token) {
-            error =  true;
-        } else {
-            const verify = jwt.verify(token, process.env.SECRET_KEY);
-            if (!verify) {
-                error = true;
-            }
-        }
-
-        if (error) {
-            res.status(401).send({ msg: "Auth failed" });
-        } else {
-            next();
-        }
+       try {
+         // Example token = Bearer oafasof89f8a0s-fafjalfjalfa
+         const token = req.headers?.authorization.split(' ')[1];
+         let error =  false;
+         if (!token) {
+             error =  true;
+         } else {
+             const verify = jwt.verify(token, process.env.SECRET_KEY);
+             if (!verify) {
+                 error = true;
+             }
+         }
+ 
+         if (error) {
+             res.status(401).send({ msg: "Auth failed" });
+         } else {
+             next();
+         }
+       } catch (error) {
+        console.log(error.message);
+        res.status(401).send({ msg: "Auth failed" });
+       }
     };
 };
