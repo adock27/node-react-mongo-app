@@ -1,9 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+// import axios from 'axios'
 
 import {
   Route,
@@ -18,6 +17,7 @@ import EntityAdd from './components/entities/EntityAdd';
 import EmployeePage from './components/employees/EmployeePage';
 import Register from './components/login/Register';
 import Login from './components/login/Login';
+import Dashboard from './components/login/Dashboard';
 
 // axios.defaults.withCredentials = true;
 
@@ -49,6 +49,7 @@ function App() {
             <Route path='/add' element={<EntityAdd />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/dashboard' element={<Dashboard />} />
           </Routes>
         </BrowserRouter>
       </div>

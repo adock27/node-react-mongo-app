@@ -5,7 +5,7 @@ const employeeController = require('../controllers/EmployeeController');
 const jwt = require("../shared/jwt");
 // api/entities
 router.post('/', jwt.authApply() ,employeeController.createEmployee);
-router.get('/', employeeController.getAllEmployees);
+router.get('/',jwt.authApply(), employeeController.getAllEmployees);
 router.get('/:id', employeeController.getEmployee);
 router.put('/:id',jwt.authApply(), employeeController.updateEmployee);
 router.delete('/:id',jwt.authApply(), employeeController.deleteEmployee);

@@ -13,7 +13,7 @@ const Register = () => {
     const Register = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:4000/users', {
+            await axios.post('http://localhost:4000/login', {
                 name: name,
                 email: email,
                 password: password,

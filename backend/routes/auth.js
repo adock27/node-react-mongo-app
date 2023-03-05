@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
+const { authApply, sign } = require("../shared/jwt");
 // constraseña
 const bcrypt = require('bcrypt');
 
@@ -56,6 +56,8 @@ router.post('/register', async (req, res) => {
 
 
 router.post('/login', async (req, res) => {
+
+    // console.log(req.body);
     // validaciones
     const { error } = schemaLogin.validate(req.body);
     if (error) return res.status(400).json({ error: error.details[0].message })
@@ -63,13 +65,14 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(400).json({ error: 'Usuario no encontrado' });
 
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword) return res.status(400).json({ error: 'contraseña no válida' })
     
-    res.json({
-        error: null,
-        data: 'exito bienvenido'
-    })
+    console.log({userdb : user});
+    
+    if (req.body.password === user.password) return res.status(400).json({ error: error+'anderson test' })
+    
+    const token = sign("anderson@gmail.com")
+    console.log(token);
+    res.json({ jwt: token });
 })
 
 module.exports = router;
