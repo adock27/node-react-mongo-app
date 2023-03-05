@@ -38,12 +38,6 @@ const EntitiesPage = () => {
     return (
         <div>
             <Container>
-                <Link to='/add'>
-                    <button className='btn btn-primary '>
-                        Add new product
-                    </button>
-                </Link>
-
                 <Table striped hover>
                     <thead>
                         <tr>
@@ -57,7 +51,7 @@ const EntitiesPage = () => {
                         {(Entities.loading) ? (
                             <tr><td>cargando...</td></tr>
                         ) : (Entities.map((entity, key) => (
-                            <tr>
+                            <tr key={key}>
                                 <td>{entity.name}</td>
                                 <td>{entity.description}</td>
                                 <td>

@@ -9,7 +9,7 @@ router.get('/', employeeController.getAllEmployees);
 router.get('/:id', employeeController.getEmployee);
 router.put('/:id',jwt.authApply(), employeeController.updateEmployee);
 router.delete('/:id',jwt.authApply(), employeeController.deleteEmployee);
-router.get('/entity/:id',jwt.authApply(), employeeController.getEmployeesByEntityId);
+router.get('/entity/:id', employeeController.getEmployeesByEntityId);
 
 
 module.exports = router;

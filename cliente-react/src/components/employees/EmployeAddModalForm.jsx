@@ -60,28 +60,31 @@ const EmployeAddModalForm = ({ entityId }) => {
                 <Modal.Body>
 
 
-                    <form >
+                    <form onSubmit={handleClick}>
                         <div className="form-group">
+                            <label htmlFor="name" className='small'>Nombre de empleado:</label>
                             <input
-                                className='form-control border-0 bg-light mb-3'
+                                className='form-control mb-3'
                                 type="text"
-                                placeholder="employees title"
+                                placeholder="..."
                                 name="name"
                                 onChange={handleChange}
                                 value={employees.name}
                             />
-                            <input
-                                className='form-control border-0 bg-light mb-3'
-                                type="text"
-                                placeholder="entity title"
-                                name="position"
-                                onChange={handleChange}
-                                value={employees.position}
-                            />
-
-
                         </div>
 
+                        <label htmlFor="description" className='small'>Descripcion:</label>
+                        <textarea
+                            className='form-control mb-3'
+                            rows={5}
+                            type="text"
+                            placeholder="..."
+                            name="description"
+                            onChange={handleChange}
+                            value={employees.position}
+                        />
+
+            
                     </form>
 
 
@@ -91,7 +94,7 @@ const EmployeAddModalForm = ({ entityId }) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                   
+
                     <Button variant="primary" onClick={handleClick}>
                         Guardar cambios
                     </Button>

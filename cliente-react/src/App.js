@@ -21,18 +21,18 @@ import EmployeePage from './components/employees/EmployeePage';
 function App() {
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light px-2 mb-5">
-        <a class="navbar-brand" href="#">App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light px-2 mb-3">
+        <a className="navbar-brand" href="/">App</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item ">
-              <a class="nav-link" href="/">Home</a>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item ">
+              <a className="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="/add">Añadir entidad</a>
+            <li className="nav-item ">
+              <a className="nav-link" href="/add">Añadir entidad</a>
             </li>
           </ul>
         </div>

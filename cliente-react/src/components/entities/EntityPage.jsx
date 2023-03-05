@@ -16,14 +16,14 @@ const EntityPage = () => {
 
 
     return (
-        <div className='py-5'>
-            <div className='container'>
-                <h6>Entity page</h6>
-                <div className="row">
-                    <div className="col-md-3">
-                        <EntityInfo></EntityInfo>
-                    </div>
-                    <div className="col">
+
+        <div className='container'>
+
+            <div className="row">
+                <div className="col-md-3">
+                    <EntityInfo></EntityInfo>
+                </div>
+                <div className="col p-3">
                     <div className='d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom'>
                         <h2 className='h6'>Empleados</h2>
 
@@ -34,10 +34,10 @@ const EntityPage = () => {
                         )}
 
                     </div>
-                        <EmployeesTable entityId={uid}></EmployeesTable>
-                    </div>
+                    <EmployeesTable entityId={uid}></EmployeesTable>
                 </div>
             </div>
+
         </div>
     )
 }

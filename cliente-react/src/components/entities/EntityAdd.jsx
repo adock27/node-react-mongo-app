@@ -43,51 +43,46 @@ export const EntityAdd = () => {
 
 
   return (
-    <div className='container py-5 my-5'>
+    <div className='container'>
 
 
       <Container>
-        <h1>Agregar entidad</h1>
+
         <Row>
 
-          <Col md={6} lg={4} xl={3}>
-            <img className='img-fluid rounded-3' src={entities.cover} alt="" />
-            <h6>{entities.name}</h6>
-            <p className='small'>{entities.description}</p>
-          </Col>
-
+         
 
           <Col>
-
-            <form>
+            <h1 className='h5 mb-3'>Agregar entidad</h1>
+            <form onSubmit={handleClick}>
               <div className="form-group">
+                <label htmlFor="name" className='small'>Nombre de entidad:</label>
                 <input
                   className='form-control mb-3'
                   type="text"
-                  placeholder="entities title"
+                  placeholder="..."
                   name="name"
                   onChange={handleChange}
                   value={entities.name}
                 />
               </div>
 
-
-
+              <label htmlFor="description" className='small'>Descripcion:</label>
               <textarea
                 className='form-control mb-3'
                 rows={5}
                 type="text"
-                placeholder="entities desc"
+                placeholder="..."
                 name="description"
                 onChange={handleChange}
                 value={entities.description}
               />
 
+              <Link to="/"><button className='btn btn-outline-danger me-2'> Regresar </button></Link>
+              <button className='btn btn-success' > Agregar </button>
             </form>
 
 
-            <Link to="/"><button className='btn btn-outline-danger me-2'> Regresar </button></Link>
-            <button className='btn btn-success' onClick={handleClick}> Argregar </button>
           </Col>
 
 
