@@ -19,7 +19,7 @@ import EmployeePage from './components/employees/EmployeePage';
 import Register from './components/login/Register';
 import Login from './components/login/Login';
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 function App() {
   return (
