@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 // boostrap 
 import Button from 'react-bootstrap/Button';
@@ -23,17 +22,7 @@ const EmployeAddModalForm = ({ entityId }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // state de mi error 
-    const [error, setError] = useState(false)
 
-    // control de la navegacion 
-    const navigate = useNavigate()
-
-    // para obtener el id del param url 
-    const location = useLocation()
-
-    // obtengo el param id 
-    const uid = location.pathname.split("/")[2];
 
     //  obtiene los datos del formulario 
     const handleChange = (e) => {
@@ -51,20 +40,9 @@ const EmployeAddModalForm = ({ entityId }) => {
             // navigate("/entidades");
         } catch (err) {
             console.log(err);
-            setError(true);
         }
     };
 
-
-
-    const deleteEmployee = async (id) => {
-        try {
-            await axios.delete("http://localhost:4000/api/employees/" + id);
-            navigate('/')
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
 
 

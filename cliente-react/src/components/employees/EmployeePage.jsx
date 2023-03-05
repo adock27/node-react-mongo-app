@@ -3,13 +3,9 @@ import axios from 'axios'
 
 
 import { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 // boostrap 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -31,9 +27,6 @@ const EmployeePage = () => {
     const handleShow = () => {
         setShow(true)
     };
-
-    // state de mi error 
-    const [error, setError] = useState(false)
 
     // control de la navegacion 
     const navigate = useNavigate()
@@ -81,7 +74,7 @@ const EmployeePage = () => {
             // navigate("/entidades");
         } catch (err) {
             console.log(err);
-            setError(true);
+         
         }
     };
 
