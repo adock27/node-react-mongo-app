@@ -60,19 +60,19 @@ router.post('/login', async (req, res) => {
    
     // validaciones
     const { error } = schemaLogin.validate(req.body);
-    if (error) return res.json({ error: 'Error' })
+    if (error) return res.json({ error: 'llenar todos los campos' })
     
     
     
     const user = await User.findOne({ email: req.body.email });
     // console.log(user);
-    if (!user) return res.json({ error: 'Usuario no encontrado' });
+    if (!user) return res.json({ error: 'Correo no registrado' });
     
     
     console.log({db_password : user.password});
     console.log({body_password : req.body.password});
     
-    if (req.body.password !== user.password) return res.json({ error: 'Wrong Password' })
+    if (req.body.password !== user.password) return res.json({ error: 'Contraseña no coincide' })
     
     const token = sign(req.body.email)
     console.log(token);

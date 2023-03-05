@@ -3,15 +3,12 @@ import axios from 'axios';
 
 const Newlogin = () => {
 
-
-
-
-
     const [login, setLogin] = useState({
         email: "",
         password: "",
     })
 
+    const [error, setError] = useState();
 
 
     //  obtiene los datos del formulario 
@@ -23,11 +20,10 @@ const Newlogin = () => {
     // cargar la data del la api 
     const Auth = async (e) => {
         e.preventDefault();
-
-        console.log(login);
         try {
-            await axios.post("http://localhost:4000/api/login", login)
-            // history.push("/dashboard");
+            const res = await axios.post("http://localhost:4000/api/login", login)
+            
+            setError(res.data.error);
         } catch (error) {
             console.log(error.response);
         }
@@ -40,6 +36,9 @@ const Newlogin = () => {
 
     return (
         <section className="hero ">
+
+            {error && <p>{error}</p>}
+
             <form onSubmit={Auth}>
                 <div className="form-group">
                     <label htmlFor="email" className='small'>Nombre de empleado:</label>
@@ -72,7 +71,7 @@ const Newlogin = () => {
 
 
             </form>
-            
+
         </section>
     )
 }
